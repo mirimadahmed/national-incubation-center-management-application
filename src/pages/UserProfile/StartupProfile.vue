@@ -250,6 +250,31 @@ export default {
       this.isLoading = false;
     },
     async addStartup() {
+      if (this.user.name.length === 0) {
+        this.$notify({
+          message: "Name must be added",
+          horizontalAlign: "top",
+          verticalAlign: "right",
+          type: "danger"
+        });
+        return;
+      } else if (this.user.logo.length === 0) {
+        this.$notify({
+          message: "Upload the logo first",
+          horizontalAlign: "top",
+          verticalAlign: "right",
+          type: "danger"
+        });
+        return;
+      } else if (this.user.founders.length === 0) {
+        this.$notify({
+          message: "Add one founder atleast.",
+          horizontalAlign: "top",
+          verticalAlign: "right",
+          type: "danger"
+        });
+        return;
+      }
       this.isLoading = true;
       const { data } = await api.create(this.user);
       this.isLoading = false;
