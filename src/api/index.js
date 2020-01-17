@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosObj = axios.create({
-  baseURL: 'https://bookable.pk/nic/api/'
+  baseURL: 'https://nicapi.yenvoo.com/api/'
 })
 
 export default {
