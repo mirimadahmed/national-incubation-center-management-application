@@ -2,6 +2,16 @@
   <div class="row">
     <div class="col-12">
       <card :title="table1.title" :subTitle="table1.subTitle">
+        <div class="row" slot="header">
+          <div class="col-md-4">
+            <h4 class="card-title">{{table1.title}}</h4>
+            <p class="card-category" v-if="table1.subTitle">{{table1.subTitle}}</p>
+          </div>
+
+          <div class="col-md-2 ml-auto">
+            <p-button round outline block @click.native="$router.push('/new-startup')">Add new</p-button>
+          </div>
+        </div>
         <div slot="raw-content" class="table-responsive">
           <div v-if="isLoading" class="w-100 text-center p-2">
             <div class="spinner-border text-success" role="status">
@@ -17,7 +27,16 @@
 <script>
 import api from "@/api";
 import { PaperTable } from "@/components";
-const tableColumns = ["Name", "Email", "Type", "Contact"];
+const tableColumns = [
+  "Name",
+  "Cohort",
+  "About",
+  "Tagline",
+  "Status",
+  "Industries",
+  "Tech",
+  "Founders"
+];
 const tableData = [
   {
     id: 1,
@@ -77,8 +96,15 @@ export default {
   methods: {
     async fetch() {
       this.isLoading = true;
-      const { data } = await api.users();
+      const { data } = await api.startups();
       this.isLoading = false;
+      const reducer = (accumulator, currentValue) =>
+        accumulator.name + ", " + currentValue.name;
+      data.forEach(item => {
+        item.industries = item.industries.reduce(reducer);
+        item.tech = item.tech.reduce(reducer);
+        item.founders = item.founders.reduce(reducer);
+      });
       this.table1.data = data;
     }
   }
