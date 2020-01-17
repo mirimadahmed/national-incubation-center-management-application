@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFoundPage.vue";
 
 // Admin pages
 import Startups from "@/pages/Startups.vue";
+import Startup from "@/pages/Startup.vue";
 import Techs from "@/pages/Techs.vue";
 import Industries from "@/pages/Industries.vue";
 import Users from "@/pages/Users.vue";
@@ -18,6 +19,11 @@ const routes = [
         path: "startups",
         name: "startups",
         component: Startups
+      },
+      {
+        path: "startup",
+        name: "startup",
+        component: Startup
       },
       {
         path: "technologies",
