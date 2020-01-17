@@ -9,7 +9,7 @@
           </div>
 
           <div class="col-md-2 ml-auto">
-            <p-button round outline block @click.native="$router.push('/new-startup')">Add new</p-button>
+            <p-button round outline block @click.native="$router.push('/startup')">Add new</p-button>
           </div>
         </div>
         <div slot="raw-content" class="table-responsive">
