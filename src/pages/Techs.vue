@@ -17,7 +17,7 @@
 <script>
 import api from "@/api";
 import { PaperTable } from "@/components";
-const tableColumns = ["Name", "Email", "Type", "Contact"];
+const tableColumns = ["Name"];
 const tableData = [
   {
     id: 1,
@@ -77,7 +77,7 @@ export default {
   methods: {
     async fetch() {
       this.isLoading = true;
-      const { data } = await api.users();
+      const { data } = await api.techs();
       this.isLoading = false;
       this.table1.data = data;
     }
