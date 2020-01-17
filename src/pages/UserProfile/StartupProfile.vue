@@ -16,15 +16,18 @@
           </div>
         </div>
         <div class="row">
+          <div class="col-md-12 text-center" v-if="user.logo.length > 0">
+            <div class="w-25 m-auto">
+              <img
+                :src="`https://nic-app.s3.amazonaws.com/logos/${user.logo}`"
+                class="rounded img-fluid"
+              />
+            </div>
+          </div>
           <div class="col-md-6">
             <div class="form-group">
               <label class="control-label">Startup Logo</label>
               <input class="form-control" type="file" @change="onLogoPicked" />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="avatar">
-              <img :src="user.logo" class="rounded img-fluid" />
             </div>
           </div>
         </div>
@@ -287,7 +290,7 @@ export default {
       const files = event.target.files;
       this.logoFile = files[0];
       let target = new FormData();
-      target.append("logo", this.logoFile);
+      target.append("logoFile", this.logoFile);
       const { data } = await api.addLogo(target);
       this.isLoading = false;
       if (data.error === 0) {
