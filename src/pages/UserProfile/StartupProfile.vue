@@ -283,6 +283,8 @@ export default {
       this.isLoading = false;
       if (data.error === 1) {
         this.error = data.message;
+      } else {
+        this.$router.push("/");
       }
     },
     async onLogoPicked() {
