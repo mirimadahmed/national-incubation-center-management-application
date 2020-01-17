@@ -1,20 +1,20 @@
 import axios from 'axios'
 
 const axiosObj = axios.create({
-  baseURL: 'https://bookable.pk/nic'
+  baseURL: 'https://bookable.pk/nic/api/'
 })
 
 export default {
   users () {
-    return axiosObj.get(`/users.php`)
+    return axiosObj.get(`users.php`)
   },
   startups () {
-    return axiosObj.get(`/startups.php`)
+    return axiosObj.get(`startups.php`)
   },
   techs () {
-    return axiosObj.get(`/techs.php`)
+    return axiosObj.get(`techs.php`)
   },
   industries () {
-    return axiosObj.get(`/industries.php`)
+    return axiosObj.get(`industries.php`)
   }
 }
