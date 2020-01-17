@@ -1,19 +1,23 @@
 <template>
-    <div class="row">
-      <div class="col-12">
-        <card :title="table1.title" :subTitle="table1.subTitle">
-          <div slot="raw-content" class="table-responsive">
-            <paper-table :data="table1.data" :columns="table1.columns">
-
-            </paper-table>
+  <div class="row">
+    <div class="col-12">
+      <card :title="table1.title" :subTitle="table1.subTitle">
+        <div slot="raw-content" class="table-responsive">
+          <div v-if="isLoading" class="w-100 text-center p-2">
+            <div class="spinner-border text-success" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
-        </card>
-      </div>
+          <paper-table :data="table1.data" :columns="table1.columns" v-else></paper-table>
+        </div>
+      </card>
     </div>
+  </div>
 </template>
 <script>
+import api from "@/api";
 import { PaperTable } from "@/components";
-const tableColumns = ["Id", "Name", "Salary", "Country", "City"];
+const tableColumns = ["Name", "Email", "Type", "Contact"];
 const tableData = [
   {
     id: 1,
@@ -58,19 +62,25 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       table1: {
-        title: "Stripped Table",
-        subTitle: "Here is a subtitle for this table",
+        title: "Startups",
+        subTitle: "startups of the NIC app.",
         columns: [...tableColumns],
-        data: [...tableData]
-      },
-      table2: {
-        title: "Table on Plain Background",
-        subTitle: "Here is a subtitle for this table",
-        columns: [...tableColumns],
-        data: [...tableData]
+        data: []
       }
     };
+  },
+  created() {
+    this.fetch();
+  },
+  methods: {
+    async fetch() {
+      this.isLoading = true;
+      const { data } = await api.users();
+      this.isLoading = false;
+      this.table1.data = data;
+    }
   }
 };
 </script>
