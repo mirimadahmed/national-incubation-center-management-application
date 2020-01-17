@@ -5,16 +5,16 @@ const axiosObj = axios.create({
 })
 
 export default {
-  users () {
+  users() {
     return axiosObj.get(`users.php`)
   },
-  startups () {
+  startups() {
     return axiosObj.get(`startups.php`)
   },
-  techs () {
-    return axiosObj.get(`techs.php`)
+  techs() {
+    return axiosObj.get(`technologies.php`)
   },
-  industries () {
+  industries() {
     return axiosObj.get(`industries.php`)
   }
 }
