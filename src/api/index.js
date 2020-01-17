@@ -16,5 +16,11 @@ export default {
   },
   industries() {
     return axiosObj.get(`industries.php`)
+  },
+  create(data) {
+    return axiosObj.post(`add_startup.php`, data)
+  },
+  addLogo(data) {
+    return axiosObj.post(`upload_logo.php`, data)
   }
 }
