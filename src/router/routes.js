@@ -15,41 +15,26 @@ const routes = [
   {
     path: "/",
     component: DashboardLayout,
-    redirect: "/dashboard",
+    redirect: "/startups",
     children: [
       {
-        path: "dashboard",
-        name: "dashboard",
-        component: Dashboard
+        path: "startups",
+        name: "startups",
+        component: TableList
       },
       {
-        path: "stats",
-        name: "stats",
-        component: UserProfile
+        path: "technologies",
+        name: "technologies",
+        component: TableList
       },
       {
-        path: "notifications",
-        name: "notifications",
-        component: Notifications
+        path: "industries",
+        name: "industries",
+        component: TableList
       },
       {
-        path: "icons",
-        name: "icons",
-        component: Icons
-      },
-      {
-        path: "maps",
-        name: "maps",
-        component: Maps
-      },
-      {
-        path: "typography",
-        name: "typography",
-        component: Typography
-      },
-      {
-        path: "table-list",
-        name: "table-list",
+        path: "users",
+        name: "users",
         component: TableList
       }
     ]

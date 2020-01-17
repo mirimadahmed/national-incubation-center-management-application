@@ -9,12 +9,9 @@
     <!-- -->
     <div class="sidebar-wrapper" id="style-3">
       <div class="logo">
-        <a href="#" class="simple-text">
-            <div class="logo-img">
-                <img src="@/assets/img/vue-logo.png" alt="">
-            </div>
+        <router-link to="/" class="simple-text">
           {{title}}
-        </a>
+        </router-link>
       </div>
       <slot>
 
@@ -43,7 +40,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Paper Dashboard"
+      default: "NIC Back Office"
     },
     backgroundColor: {
       type: String,
