@@ -98,12 +98,22 @@ export default {
       this.isLoading = true;
       const { data } = await api.startups();
       this.isLoading = false;
-      const reducer = (accumulator, currentValue) =>
-        accumulator.name + ", " + currentValue.name;
       data.forEach(item => {
-        item.industries = item.industries.reduce(reducer);
-        item.tech = item.tech.reduce(reducer);
-        item.founders = item.founders.reduce(reducer);
+        if (item.industries.length === 0) {
+          item.industries = "No industries selected.";
+        } else {
+          item.industries = item.industries.map(item => item.name).join(", ");
+        }
+        if (item.tech.length === 0) {
+          item.tech = "No technologies selected.";
+        } else {
+          item.tech = item.tech.map(item => item.name).join(", ");
+        }
+        if (item.founders.length === 0) {
+          item.founders = "No founders added.";
+        } else {
+          item.founders = item.founders.map(item => item.name).join(", ");
+        }
       });
       this.table1.data = data;
     }
