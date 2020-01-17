@@ -266,7 +266,7 @@ export default {
       const { data } = await api.addLogo(target);
       this.isLoading = false;
       if (data.error === 0) {
-        this.user.logo = data.url;
+        this.user.logo = data.logo;
       } else {
         this.error = data.message;
       }
