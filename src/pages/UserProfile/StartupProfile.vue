@@ -32,10 +32,16 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <fg-input type="text" label="Startup" placeholder="Name" v-model="user.name"></fg-input>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-8">
+            <fg-input type="text" label="Tagline" placeholder="One liner" v-model="user.tagline"></fg-input>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
             <div class="form-group">
               <label class="control-label">Cohort</label>
               <select v-model="user.cohort" class="form-control">
@@ -47,19 +53,55 @@
               </select>
             </div>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <fg-input type="text" label="Tagline" placeholder="One liner" v-model="user.tagline"></fg-input>
-          </div>
-          <div class="col-md-6">
+          <div class="col-md-3">
             <div class="form-group">
               <label class="control-label">Status</label>
               <select v-model="user.status" class="form-control">
                 <option v-for="(status, i) in statuses" :key="i" :value="status">{{ status }}</option>
               </select>
             </div>
+          </div>
+          <div class="col-md-6">
+            <fg-input
+              type="text"
+              label="Company Website"
+              placeholder="Website URL"
+              v-model="user.website"
+            ></fg-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <fg-input
+              type="text"
+              label="Company LinkedIn"
+              placeholder="LinkedIn URL"
+              v-model="user.linkedin"
+            ></fg-input>
+          </div>
+          <div class="col-md-6">
+            <fg-input
+              type="text"
+              label="Company Facebook"
+              placeholder="Facebook URL"
+              v-model="user.facebook"
+            ></fg-input>
+          </div>
+          <div class="col-md-6">
+            <fg-input
+              type="text"
+              label="Company Instagram"
+              placeholder="Instagram username"
+              v-model="user.instagram"
+            ></fg-input>
+          </div>
+          <div class="col-md-6">
+            <fg-input
+              type="text"
+              label="Company Twitter"
+              placeholder="Twitter username"
+              v-model="user.twitter"
+            ></fg-input>
           </div>
         </div>
 
@@ -203,6 +245,11 @@ export default {
         about: "",
         tagline: "",
         cohort: "",
+        website: "",
+        linkedin: "",
+        facebook: "",
+        instagram: "",
+        twitter: "",
         technologies: [],
         industries: [],
         founders: [],
