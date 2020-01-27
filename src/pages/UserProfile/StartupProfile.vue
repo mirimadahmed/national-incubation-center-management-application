@@ -179,7 +179,7 @@
             <p-button type="info" round @click.native.prevent="addFounder">Add Founder</p-button>
           </div>
           <div class="col-md-6 text-right">
-            <p-button type="info" round @click.native.prevent="addStartup">Create Startup</p-button>
+            <p-button type="info" round @click.native.prevent="addStartup">{{buttonText}}</p-button>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -192,6 +192,7 @@ import api from "@/api";
 export default {
   data() {
     return {
+      id: this.$route.query.id,
       isLoading: false,
       error: "",
       logoFile: null,
@@ -261,6 +262,9 @@ export default {
     this.fetch();
   },
   computed: {
+    buttonText() {
+      return this.id === undefined ? "Create Startup" : "Save Startup";
+    },
     selectedTechs() {
       if (this.user.technologies.length === 0) {
         return "(Select all that apply)";
@@ -298,6 +302,14 @@ export default {
       const { data } = await api.industries();
       this.industries = data;
       this.isLoading = false;
+      if (this.id !== undefined) this.fetchStartup();
+    },
+    async fetchStartup() {
+      this.isLoading = true;
+      const { data } = await api.getStartup(this.id);
+      console.log(data);
+      this.user = data;
+      this.isLoading = false;
     },
     async addStartup() {
       if (this.user.name.length === 0) {
@@ -326,12 +338,27 @@ export default {
         return;
       }
       this.isLoading = true;
-      const { data } = await api.create(this.user);
-      this.isLoading = false;
-      if (data.error === 1) {
-        this.error = data.message;
+      if (this.id === undefined) {
+        const { data } = await api.create(this.user);
+        this.isLoading = false;
+        if (data.error === 1) {
+          this.error = data.message;
+        } else {
+          this.$router.push("/");
+        }
       } else {
-        this.$router.push("/");
+        const { data } = await api.updateStartup(this.user);
+        this.isLoading = false;
+        if (data.error === 1) {
+          this.error = data.message;
+        } else {
+          this.$notify({
+            message: "Startup updated.",
+            horizontalAlign: "right",
+            verticalAlign: "top",
+            type: "success"
+          });
+        }
       }
     },
     async onLogoPicked() {
