@@ -22,5 +22,8 @@ export default {
   },
   addLogo(data) {
     return axiosObj.post(`upload_logo.php`, data)
+  },
+  getStartup(id) {
+    return axiosObj.get(`mobile_app/get_startup.php?startup_id=${id}`)
   }
 }
