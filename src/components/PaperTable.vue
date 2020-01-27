@@ -3,6 +3,7 @@
     <thead>
     <slot name="columns">
       <th v-for="column in columns" :key="column">{{column}}</th>
+      <th  v-if="startupTable">Action</th>
     </slot>
     </thead>
     <tbody>
@@ -14,6 +15,9 @@
           {{itemValue(item, column)}}
         </td>
       </slot>
+      <td v-if="startupTable">
+        <router-link :to="`/startup?id=${itemValue(item, 'ID')}`">View</router-link>
+      </td>
     </tr>
     </tbody>
   </table>
@@ -35,6 +39,10 @@ export default {
     subTitle: {
       type: String,
       default: ""
+    },
+    startupTable: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
