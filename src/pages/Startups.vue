@@ -18,7 +18,7 @@
               <span class="sr-only">Loading...</span>
             </div>
           </div>
-          <paper-table :data="table1.data" :columns="table1.columns" v-else></paper-table>
+          <paper-table :data="table1.data" :columns="table1.columns" :startupTable="true" v-else></paper-table>
         </div>
       </card>
     </div>
@@ -28,6 +28,7 @@
 import api from "@/api";
 import { PaperTable } from "@/components";
 const tableColumns = [
+  "ID",
   "Name",
   "Cohort",
   "About",
