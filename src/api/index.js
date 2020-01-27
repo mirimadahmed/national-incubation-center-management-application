@@ -28,5 +28,8 @@ export default {
   },
   updateStartup(data) {
     return axiosObj.post(`update_startup.php`, data)
+  },
+  deleteFounder(id) {
+    return axiosObj.get(`delete_founder.php?id=${id}`)
   }
 }
