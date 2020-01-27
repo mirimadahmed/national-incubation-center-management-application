@@ -289,8 +289,29 @@ export default {
         linkedin: ""
       });
     },
-    deleteFounder(i) {
-      this.user.founders.splice(i, 1);
+    async deleteFounder(i) {
+      if (this.id === undefined) this.user.founders.splice(i, 1);
+      else {
+        this.isLoading = true;
+        const { data } = await api.deleteFounder(this.user.founders[i].id);
+        if (data.error === 0) {
+          this.$notify({
+            message: "Founder deleted.",
+            horizontalAlign: "right",
+            verticalAlign: "top",
+            type: "success"
+          });
+          this.user.founders.splice(i, 1);
+        } else {
+          this.$notify({
+            message: "Cannot delete founder.",
+            horizontalAlign: "right",
+            verticalAlign: "top",
+            type: "danger"
+          });
+        }
+        this.isLoading = false;
+      }
     },
     async fetch() {
       this.isLoading = true;
@@ -315,24 +336,24 @@ export default {
       if (this.user.name.length === 0) {
         this.$notify({
           message: "Name must be added",
-          horizontalAlign: "top",
-          verticalAlign: "right",
+          horizontalAlign: "right",
+          verticalAlign: "top",
           type: "danger"
         });
         return;
       } else if (this.user.logo.length === 0) {
         this.$notify({
           message: "Upload the logo first",
-          horizontalAlign: "top",
-          verticalAlign: "right",
+          horizontalAlign: "right",
+          verticalAlign: "top",
           type: "danger"
         });
         return;
       } else if (this.user.founders.length === 0) {
         this.$notify({
           message: "Add one founder atleast.",
-          horizontalAlign: "top",
-          verticalAlign: "right",
+          horizontalAlign: "right",
+          verticalAlign: "top",
           type: "danger"
         });
         return;
