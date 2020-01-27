@@ -24,7 +24,7 @@ export default {
     return axiosObj.post(`upload_logo.php`, data)
   },
   getStartup(id) {
-    return axiosObj.get(`mobile_app/get_startup.php?startup_id=${id}`)
+    return axiosObj.get(`get_startup.php?startup_id=${id}`)
   },
   updateStartup(data) {
     return axiosObj.post(`update_startup.php`, data)
