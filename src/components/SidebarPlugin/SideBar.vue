@@ -12,6 +12,7 @@
         <router-link to="/" class="simple-text">
           {{title}}
         </router-link>
+          <a class="text-light" href="" @click="logout">Logout</a>
       </div>
       <slot>
 
@@ -104,6 +105,9 @@ export default {
     };
   },
   methods: {
+    logout() {
+      this.$store.commit('logout')
+    },
     findActiveLink() {
       this.links.forEach((link, index) => {
         if (link.isActive()) {

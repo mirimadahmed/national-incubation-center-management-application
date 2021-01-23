@@ -1,10 +1,13 @@
 import axios from 'axios'
 
 const axiosObj = axios.create({
-  baseURL: 'https://nicapi.yenvoo.com/api/'
+  baseURL: 'https://nicapp.nicpakistan.pk/api/'
 })
 
 export default {
+  login(email, password) {
+    return axiosObj.get(`login.php?email=${email}&password=${password}`)
+  },
   users() {
     return axiosObj.get(`users.php`)
   },
