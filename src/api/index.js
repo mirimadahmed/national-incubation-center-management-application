@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosObj = axios.create({
-  baseURL: 'https://nicapp.nicpakistan.pk/api/'
+  baseURL: '/api/'
 })
 
 export default {

@@ -19,7 +19,7 @@
           <div class="col-md-12 text-center" v-if="user.logo.length > 0">
             <div class="w-25 m-auto">
               <img
-                :src="`https://nicapp.nicpakistan.pk/logos/${user.logo}`"
+                :src="`/logos/${user.logo}`"
                 class="rounded img-fluid"
               />
             </div>
