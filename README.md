@@ -1,6 +1,7 @@
-# [NIC BACK OFFICE]
+# National Incubation Center BACK OFFICE
 
-> Admin dashboard for NIC Application
+> Admin dashboard for NIC Application.
+> This is the admin side of the public NIC application which manages different bookings of rooms, halls, etc in the national incubation center. 
 
 ## Build Setup
 
